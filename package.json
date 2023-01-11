@@ -1,0 +1,26 @@
+{
+  "name": "modern-app",
+  "version": "1.0.0",
+  "description": "mongo data base admin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raviteja9135/modern-app.git"
+  },
+  "author": "ravi teja mullangi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raviteja9135/modern-app/issues"
+  },
+  "homepage": "https://github.com/raviteja9135/modern-app#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^4.13.0"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5"
+  }
+}
