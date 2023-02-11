@@ -19,7 +19,8 @@ router.route('/addDocument').post(async function(req,res) {
         lastName: req.body.lastName,
         email: req.body.email,
         phone: req.body.phone,
-        last_modified: new Date()
+        last_modified: new Date(),
+        profilePic: res.profilePic || null
     }
  
     if(query.firstName) {
