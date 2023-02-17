@@ -34,6 +34,21 @@ router.route('/addDocument').post(async function(req,res) {
     
 });
 
+router.route('/checkCredentials').post(async function(req, res) {
+    const db = client.getDb();
+    const query = {
+        'firstName': req.body.userName
+      }
+    try{
+        const cursor = await db.collection('personal-details').find(query);
+        const result = await cursor.toArray();
+    return res.status(200).send(result);
+    } catch {
+        const result = await db.collection('personal-details').find({});
+        return res.status(500).send(result);
+    }
+})
+
 router.route('/getAllDocs').get(async function(_req,res) {
     const db = client.getDb();
 
