@@ -14,30 +14,21 @@ router.route('/').get(async function(_req,res) {
 
 router.route('/addDocument').post(async function(req,res) {
     const db = client.getDb();
-    const query = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        phone: req.body.phone,
-        last_modified: new Date(),
-        profilePic: res.profilePic || null
-    }
+    const query = req.body;
  
-    if(query.firstName) {
-    const result = await db.collection('personal-details').insertOne(query);
-
+    if(query.user.firstName) {
+        const result = await db.collection('personal-details').insertOne(query);
         return res.status(200).send(result);
     } else {
         console.error('Bad Request');
         return res.status(400).send()
     }
-    
 });
 
 router.route('/checkCredentials').post(async function(req, res) {
     const db = client.getDb();
     const query = {
-        'firstName': req.body.userName
+        'user.userName': req.body.userName
       }
     try{
         const cursor = await db.collection('personal-details').find(query);
