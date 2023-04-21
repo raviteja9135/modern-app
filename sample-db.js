@@ -53,5 +53,3 @@ router.route('/getAllDocs').get(async function(_req,res) {
 });
 
 module.exports = router;
-
-
