@@ -2,7 +2,6 @@ const client =  require('./dbConnection');
 const express = require('express');
 const router = express.Router();
 
-
 router.route('/').get(async function(_req,res) {
     const db = client.getDb();
     let databasesList = await db.admin().listDatabases();
@@ -38,7 +37,7 @@ router.route('/checkCredentials').post(async function(req, res) {
         const result = await db.collection('personal-details').find({});
         return res.status(500).send(result);
     }
-})
+});
 
 router.route('/getAllDocs').get(async function(_req,res) {
     const db = client.getDb();
@@ -52,25 +51,6 @@ router.route('/getAllDocs').get(async function(_req,res) {
         return res.status(400).send()
     }
 });
-
-// async function addMultipleDocuments( documents) {
-//     const result  = await clientCollection.insertMany(documents);
-//     console.log(result.insertedCount);
-// }
-
-// async function updatePersonalDetails () {
-//     const result = await clientCollection.Update;
-// }
-
-// async function findDocument( query) {
-//     const result  = await clientCollection.findOne({"userName": query});
-//     console.log(result);
-// }
-
-// async function createDocument (document) {
-//     const result = await clientCollection.insertOne(document);
-//     console.log(result.insertedId);
-// }
 
 module.exports = router;
 
