@@ -14,10 +14,13 @@ let dbConnection;
 module.exports = {
   connectToServer: function (callback) {
     client.connect();
-        dbConnection = client.db('user-details');
-        console.log('Successfully connected to MongoDB.');
-  
-        return callback();
+    if(process.env.APP == 'todo') {
+      dbConnection = client.db('todo');
+    } else {
+      dbConnection = client.db('user-details');
+    }
+    console.log('Successfully connected to MongoDB.');
+    return callback();
   },
   getDb: function () {
     return dbConnection;

@@ -1,6 +1,7 @@
 const express = require('express');
 const dbConn = require('./dbConnection');
-const router = require('./sample-db');
+const sampleRouter = require('./sample-db');
+const todoRouter = require('./todo-db')
 const cors = require('cors');
 const app = express();
 
@@ -10,7 +11,12 @@ const app = express();
 // });
 app.use(cors());
 app.use(express.json());
-app.use(router);
+if (process.env.APP) {
+ app.use(todoRouter);
+}else {
+  app.use(sampleRouter);
+}
+
 
 dbConn.connectToServer(function (err) {
     if (err) {
